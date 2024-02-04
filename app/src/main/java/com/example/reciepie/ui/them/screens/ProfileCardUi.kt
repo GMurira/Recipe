@@ -49,6 +49,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.reciepie.R
 import com.example.reciepie.data.CardData
 import com.example.reciepie.data.profiles
@@ -79,7 +80,9 @@ fun HustyProfileTopAppBar( modifier: Modifier = Modifier){
             Row (
                 verticalAlignment = Alignment.CenterVertically
             ){
-                Text(text = stringResource(id = R.string.View))
+                Text(
+                    text = stringResource(id = R.string.View)
+                )
             }
         },
         modifier = modifier
@@ -97,7 +100,8 @@ fun HustyAppProfileCard(
     val color by animateColorAsState(targetValue = if (expanded) Color.Cyan
     else    Color.LightGray){}
    OutlinedCard(
-       modifier = Modifier,
+       modifier = Modifier
+           .padding(16.dp),
        colors = CardDefaults.cardColors(
            containerColor = Color.LightGray
        )
@@ -106,8 +110,8 @@ fun HustyAppProfileCard(
            horizontalAlignment = Alignment.CenterHorizontally,
            modifier = Modifier
                .background(color = color)
-               .fillMaxWidth()
                .padding(dimensionResource(id = R.dimen.padding_small))
+               .animateContentSize()
 
        )
        {
@@ -195,7 +199,7 @@ private fun EmailIconAndButton(
             modifier = modifier
         ) {
             Icon(
-                imageVector = if (expanded)Icons.Default.KeyboardArrowDown else Icons.Default.KeyboardArrowUp,
+                imageVector = if (expanded)Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.secondary)
         }
@@ -209,7 +213,10 @@ fun DescriptionInfo(
     desrciption: Int,
     modifier: Modifier = Modifier){
    Column(
+       verticalArrangement = Arrangement.Center,
+       horizontalAlignment = Alignment.CenterHorizontally,
        modifier = modifier
+
    ) {
        Text(
            text = stringResource(desrciption)
