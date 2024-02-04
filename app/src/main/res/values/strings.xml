@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Reciepie</string>
+    <string name="MainFragmentName">Home</string>
+    <string name="Welcome">Welcome</string>
+    <string name="Sometext">SomeText</string>
+    <string name="Hello">Hello</string>
+    <string name="View">View Profiles</string>
+    <string name="Available">Available</string>
+    <string name="Hireable">Ready to work</string>
+
+    <string name="profile_name_1">Koda</string>
+    <string name="profile_name_2">Lola</string>
+    <string name="profile_name_3">Frankie</string>
+    <string name="profile_name_4">Nox</string>
+    <string name="Profile_name_5">Faye</string>
+    <string name="Profile_name_6">Bella</string>
+    <string name="Profile_name_7">Murira</string>
+    <string name="Profile_name_8">Tzeitel</string>
+    <string name="Profile_name_9">Leroy</string>
+    <string name="Description">A worker is a person who lends their time and skill in exchange for a dime, contributing to industries diverse, with tasks they traverse.</string>
+</resources>

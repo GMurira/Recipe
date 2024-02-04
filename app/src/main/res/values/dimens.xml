@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="paddiing_medium">16dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_large">26dp</dimen>
+    <dimen name="image_size">64dp</dimen>
+    <dimen name="large_Width">64dp</dimen>
+    <dimen name="Medium_Width">32dp</dimen>
+    <dimen name="Width_Small">16dp</dimen>
+    <string name="Orders">Orders</string>
+</resources>
