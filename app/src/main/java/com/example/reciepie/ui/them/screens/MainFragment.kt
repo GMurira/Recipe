@@ -1,6 +1,5 @@
 package com.example.reciepie.ui.them.screens
 
-import android.graphics.drawable.Icon
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -22,6 +21,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -30,6 +30,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -37,8 +38,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.reciepie.R
+import com.example.reciepie.data.list
 import com.example.reciepie.ui.theme.ReciepieTheme
+import com.example.reciepie.ui.theme.Shapes
 
 /**
  * Main page for the mobile application
@@ -103,13 +107,15 @@ fun ServiceCalculator(modifier: Modifier = Modifier){
     var serviceValue by remember{ mutableStateOf(0)}
     Row (
         verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceEvenly,
         modifier = Modifier
             .padding(
-                horizontal = dimensionResource(id = R.dimen.padding_medium),
-                vertical = dimensionResource(id = R.dimen.padding_small)
+                vertical = dimensionResource(id = R.dimen.padding_medium),
+                horizontal = dimensionResource(id = R.dimen.padding_small)
             )
             .background(Color.LightGray)
             .fillMaxWidth()
+            .clip(MaterialTheme.shapes.large)
     ){
         Text(text = stringResource(id = R.string.Orders,Modifier.weight(1f)), fontWeight = FontWeight.ExtraBold)
         Spacer(modifier = Modifier.weight(1f))
@@ -133,6 +139,7 @@ fun Ingridients(modifier: Modifier = Modifier){
             )
             .background(Color.LightGray)
             .fillMaxWidth()
+            .clip(MaterialTheme.shapes.large)
     ) {
         TabButton(active = true, text = stringResource(id = R.string.Sometext) )
         TabButton(active = false, text = stringResource(id = R.string.Sometext))
@@ -162,31 +169,69 @@ fun TabButton( active: Boolean,text:String,modifier: Modifier = Modifier){
     }
     }
 /**
- * Composable Showig the main items tobe presented
+ * Ingredients List
  */
 @Composable
-fun IngredientsList(modifier: Modifier = Modifier){
-    //IngredientsListCard(cardIcon = )
+fun IngredientsList(){
+    IngredientsListCard(
+        cardIcon = R.drawable.nguyai,
+        title = "Title",
+        subtitle = "Sub_Title"
+        )
 }
 /**
- * Ingredients List Card
+ * Easy Grid
  */
+@Composable
+fun <T>EasyGrid(
+    nColumns: Int,
+    items: list<T>,
+    content: @Composable (T) -> Unit,
+    modifier: Modifier = Modifier)
+{
+
+}
+/**
+ * Ingredients Card
+ */
+
 @Composable
 fun IngredientsListCard(
     @DrawableRes cardIcon: Int,
-    modifier: Modifier = Modifier){
+    title: String,
+    subtitle: String,
+    modifier: Modifier = Modifier
+){
    Column (
        horizontalAlignment = Alignment.CenterHorizontally,
        modifier = Modifier.padding(bottom = 16.dp)
    ){
        Card(
-           //shape =
+           shape = Shapes.large,
            modifier = Modifier
                .width(100.dp)
                .height(100.dp)
                .padding(bottom = 8.dp)
        ) {
-           Image(painter = painterResource(id = cardIcon) , contentDescription = null)
+           Image(
+               painter = painterResource(id = cardIcon),
+               contentDescription = null,
+               modifier =  Modifier.padding(16.dp)
+           )
+           Text(
+               text = title,
+               modifier = Modifier
+                   .width(100.dp),
+               fontSize = 14.sp,
+               fontWeight = FontWeight.Medium
+               )
+           Text(
+               text = subtitle,
+               modifier = Modifier.width(100.dp),
+               color = Color.DarkGray,
+               fontSize = 14.sp
+
+           )
        }
    }
 }
@@ -196,7 +241,7 @@ fun IngredientsListCard(
 @Preview
 @Composable
 fun IngredientsCardPreview(){
-   // IngredientsListCard()
+    //IngredientsListCard(cardIcon = )
 }
 /**
  * Main fragment composable preview

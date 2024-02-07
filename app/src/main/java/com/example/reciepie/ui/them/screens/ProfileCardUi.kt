@@ -97,8 +97,6 @@ fun HustyAppProfileCard(
     modifier: Modifier = Modifier){
 
     var expanded by remember { mutableStateOf(false) }
-    val color by animateColorAsState(targetValue = if (expanded) Color.Cyan
-    else    Color.LightGray){}
    OutlinedCard(
        modifier = Modifier
            .padding(16.dp),
@@ -109,7 +107,6 @@ fun HustyAppProfileCard(
        Column (
            horizontalAlignment = Alignment.CenterHorizontally,
            modifier = Modifier
-               .background(color = color)
                .padding(dimensionResource(id = R.dimen.padding_small))
                .animateContentSize()
 
