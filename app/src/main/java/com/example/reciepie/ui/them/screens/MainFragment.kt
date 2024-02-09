@@ -189,7 +189,15 @@ fun <T>EasyGrid(
     content: @Composable (T) -> Unit,
     modifier: Modifier = Modifier)
 {
-
+    Column (modifier = Modifier.padding(16.dp)){
+        for (i in items.indices step nColumns){
+            Row {
+                for (j in 0 until nColumns){
+                    if ()
+                }
+            }
+        }
+    }
 }
 /**
  * Ingredients Card
