@@ -24,6 +24,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,7 +40,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.reciepie.R
+import com.example.reciepie.RecipieViewModel
 import com.example.reciepie.data.list
 import com.example.reciepie.ui.theme.ReciepieTheme
 import com.example.reciepie.ui.theme.Shapes
@@ -48,7 +51,11 @@ import com.example.reciepie.ui.theme.Shapes
  * Main page for the mobile application
  */
 @Composable
-fun MainFragementComposable(modifier: Modifier = Modifier){
+fun MainFragementComposable(
+    recipeViewModel: RecipieViewModel = viewModel(),
+    modifier: Modifier = Modifier
+){
+    val recipeUiState by recipeViewModel.uiState.collectAsState()
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -56,7 +63,9 @@ fun MainFragementComposable(modifier: Modifier = Modifier){
         {
              BasicInfo()
             DescriptionRow()
-            ServiceCalculator()
+            ServiceCalculator(
+                orders = recipeUiState.orders
+            )
             Ingridients()
             IngredientsList()
 
@@ -102,9 +111,10 @@ fun DescriptionRow(modifier: Modifier = Modifier){
  * Service calculator
  */
 @Composable
-fun ServiceCalculator(modifier: Modifier = Modifier){
+fun ServiceCalculator(
+    orders: String,
+    modifier: Modifier = Modifier){
     //ChangeIcns to buttons to insert Logic
-    var serviceValue by remember{ mutableStateOf(0)}
     Row (
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceEvenly,
@@ -120,7 +130,10 @@ fun ServiceCalculator(modifier: Modifier = Modifier){
         Text(text = stringResource(id = R.string.Orders,Modifier.weight(1f)), fontWeight = FontWeight.ExtraBold)
         Spacer(modifier = Modifier.weight(1f))
         Icon(Icons.Default.Add, contentDescription = null )
-        Text(text = stringResource(id = R.string.Orders), Modifier.padding(16.dp))
+        Text(
+            text = orders   ,
+            Modifier.padding(16.dp)
+        )
         Icon(Icons.Default.ArrowForward, contentDescription = null)
     }
 }
@@ -182,23 +195,23 @@ fun IngredientsList(){
 /**
  * Easy Grid
  */
-@Composable
-fun <T>EasyGrid(
-    nColumns: Int,
-    items: list<T>,
-    content: @Composable (T) -> Unit,
-    modifier: Modifier = Modifier)
-{
-    Column (modifier = Modifier.padding(16.dp)){
-        for (i in items.indices step nColumns){
-            Row {
-                for (j in 0 until nColumns){
-                    if ()
+    /*@Composable
+    fun <T>EasyGrid(
+        nColumns: Int,
+        items: list<T>,
+        content: @Composable (T) -> Unit,
+        modifier: Modifier = Modifier)
+    {
+        Column (modifier = Modifier.padding(16.dp)){
+            for (i in items.indices step nColumns){
+                Row {
+                    for (j in 0 until nColumns){
+                        if ()
+                    }
                 }
             }
         }
-    }
-}
+    }*/
 /**
  * Ingredients Card
  */
